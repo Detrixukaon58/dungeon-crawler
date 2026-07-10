@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca6v8dm7ibf3x"]
+
+[ext_resource type="Script" uid="uid://mk84qjuk1btk" path="res://Scripts/Player.cs" id="1_y6xdh"]
+[ext_resource type="Texture2D" uid="uid://cb8hsnl3he2h" path="res://icon.svg" id="2_5wxv7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y6xdh"]
+rough = true
+absorbent = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3icqa"]
+
+[node name="Player" type="RigidBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 100.0
+physics_material_override = SubResource("PhysicsMaterial_y6xdh")
+script = ExtResource("1_y6xdh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_3icqa")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.300943, 0, 0, 0, 0.282363, 0.256957, 0, -0.104242, 0.696025, 0, 1.06447, -1.21154)
+texture = ExtResource("2_5wxv7")
