@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://cwql2sns3e8gu"
+path="res://.godot/imported/Altered Chrome SemiBold.fnt-834ceab424aeac6fe6c9de65b52d52ee.fontdata"
+
+[deps]
+
+source_file="res://Fonts/Altered Chrome/Atari8/Altered Chrome SemiBold.fnt"
+dest_files=["res://.godot/imported/Altered Chrome SemiBold.fnt-834ceab424aeac6fe6c9de65b52d52ee.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

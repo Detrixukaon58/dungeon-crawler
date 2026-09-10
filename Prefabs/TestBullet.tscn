@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://xdrve4hky5gg"]
+
+[ext_resource type="Script" uid="uid://0xj5m2tbe1hh" path="res://Scripts/TestBullet.cs" id="1_jme71"]
+
+[node name="TestBullet" type="Node3D"]
+script = ExtResource("1_jme71")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+radius = 0.1

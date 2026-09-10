@@ -1,0 +1,35 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://c85q6j6ncv5c3"
+path="res://.godot/imported/Altered Chrome Script.woff2-853fd2aeda6b7d501b2860accb902105.fontdata"
+
+[deps]
+
+source_file="res://Fonts/Altered Chrome/PC/Altered Chrome Script.woff2"
+dest_files=["res://.godot/imported/Altered Chrome Script.woff2-853fd2aeda6b7d501b2860accb902105.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=4
+keep_rounding_remainders=true
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

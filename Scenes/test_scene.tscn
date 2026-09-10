@@ -10,3 +10,29 @@ use_collision = true
 size = Vector3(66, 0.5, 65)
 
 [node name="Player" parent="." instance=ExtResource("1_acep8")]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.375, -32)
+use_collision = true
+size = Vector3(66, 2.75, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.375, 32)
+use_collision = true
+size = Vector3(66, 2.75, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -32, 1.375, 0)
+use_collision = true
+size = Vector3(63, 2.75, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 33, 1.375, 0)
+use_collision = true
+size = Vector3(63, 2.75, 1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.525754, 0.850637, 0, -0.850637, 0.525754, 0, 9.77155, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.72455, 10.8627)

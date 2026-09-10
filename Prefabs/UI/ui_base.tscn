@@ -1,0 +1,249 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbtsov5uolfy5"]
+
+[ext_resource type="Theme" uid="uid://c20f1vr06v1ms" path="res://Themes/UI_THEME.tres" id="1_oekr6"]
+[ext_resource type="Script" uid="uid://cc6uwg2kepnnc" path="res://Scripts/UiBase.cs" id="2_tyxik"]
+[ext_resource type="Texture2D" uid="uid://xh01q20hbhur" path="res://Sprites/Effects/Slash.tres" id="3_0trw1"]
+[ext_resource type="FontFile" uid="uid://dr6l620ny2els" path="res://Fonts/Altered Chrome/PC/Altered Chrome.ttf" id="3_s033v"]
+[ext_resource type="Texture2D" uid="uid://dp6un8kl8f1vi" path="res://Sprites/Effects/Shoot.tres" id="4_it2xc"]
+[ext_resource type="Texture2D" uid="uid://papgdtqtyucx" path="res://Sprites/Effects/Water.tres" id="6_em4cl"]
+[ext_resource type="Texture2D" uid="uid://bsr0fpy15u3uv" path="res://Sprites/Effects/Electric.tres" id="7_nn1ne"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oekr6"]
+bg_color = Color(0.13136, 0.619308, 1, 1)
+
+[node name="UI_BASE" type="Control"]
+texture_filter = 1
+clip_contents = true
+custom_minimum_size = Vector2(192, 140)
+layout_mode = 3
+anchor_right = 0.167
+anchor_bottom = 0.216
+offset_right = -0.384018
+offset_bottom = 0.0319977
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_oekr6")
+script = ExtResource("2_tyxik")
+
+[node name="UI_HEALTH" type="Panel" parent="."]
+custom_minimum_size = Vector2(192, 20)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.143
+offset_bottom = -0.0200005
+
+[node name="Health" type="ProgressBar" parent="UI_HEALTH"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 4.0
+offset_right = 189.0
+offset_bottom = 8.0
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("1_oekr6")
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="UI_HEALTH/Health"]
+layout_mode = 0
+offset_left = -23.0
+offset_top = -2.0
+offset_right = 25.0
+offset_bottom = 5.0
+theme_override_fonts/font = ExtResource("3_s033v")
+text = "HP:"
+
+[node name="Stamina" type="ProgressBar" parent="UI_HEALTH"]
+layout_mode = 2
+offset_left = 24.0
+offset_top = 15.0
+offset_right = 189.0
+offset_bottom = 19.0
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("1_oekr6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_oekr6")
+value = 100.0
+show_percentage = false
+
+[node name="Label2" type="Label" parent="UI_HEALTH/Stamina"]
+layout_mode = 0
+offset_left = -23.0
+offset_top = -2.0
+offset_right = 17.0
+offset_bottom = 5.0
+theme_override_fonts/font = ExtResource("3_s033v")
+text = "SP:"
+
+[node name="UI_FIGHT_MENU" type="PanelContainer" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(192, 120)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_oekr6")
+
+[node name="UI_ATTK" type="Panel" parent="UI_FIGHT_MENU"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("1_oekr6")
+
+[node name="Button" type="Button" parent="UI_FIGHT_MENU/UI_ATTK"]
+layout_mode = 0
+offset_left = 2.00001
+offset_top = 6.0
+offset_right = 94.0
+offset_bottom = 52.0
+theme = ExtResource("1_oekr6")
+text = "Slash"
+icon = ExtResource("3_0trw1")
+
+[node name="Button2" type="Button" parent="UI_FIGHT_MENU/UI_ATTK"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 6.0
+offset_right = 189.0
+offset_bottom = 52.0
+theme = ExtResource("1_oekr6")
+text = "Shoot"
+icon = ExtResource("4_it2xc")
+
+[node name="Button3" type="Button" parent="UI_FIGHT_MENU/UI_ATTK"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.00001
+offset_top = 54.0
+offset_right = 94.0
+offset_bottom = 103.0
+theme = ExtResource("1_oekr6")
+theme_override_font_sizes/font_size = 7
+text = "Watershot"
+icon = ExtResource("6_em4cl")
+
+[node name="Button4" type="Button" parent="UI_FIGHT_MENU/UI_ATTK"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 54.0
+offset_right = 189.0
+offset_bottom = 103.0
+theme = ExtResource("1_oekr6")
+theme_override_font_sizes/font_size = 8
+text = "ElecShot"
+icon = ExtResource("7_nn1ne")
+clip_text = true
+
+[node name="UI_ITM" type="Panel" parent="UI_FIGHT_MENU"]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("1_oekr6")
+
+[node name="ItemList" type="ItemList" parent="UI_FIGHT_MENU/UI_ITM"]
+custom_minimum_size = Vector2(190, 105)
+layout_mode = 2
+offset_right = 192.0
+offset_bottom = 105.0
+theme = ExtResource("1_oekr6")
+text_overrun_behavior = 1
+item_count = 15
+max_columns = 2
+fixed_column_width = 80
+item_0/text = "1"
+item_0/icon = ExtResource("3_0trw1")
+item_1/text = "2"
+item_1/icon = ExtResource("4_it2xc")
+item_2/text = "3"
+item_3/text = "4"
+item_4/text = "5"
+item_5/text = "6"
+item_5/icon = ExtResource("3_0trw1")
+item_6/text = "7"
+item_6/icon = ExtResource("4_it2xc")
+item_7/text = "8"
+item_8/text = "9"
+item_8/icon = ExtResource("3_0trw1")
+item_9/text = "10"
+item_9/icon = ExtResource("4_it2xc")
+item_10/text = "11"
+item_11/text = "12"
+item_12/text = "13"
+item_13/text = "14"
+item_14/text = "15"
+
+[node name="UI_MGK" type="Panel" parent="UI_FIGHT_MENU"]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(190, 120)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("1_oekr6")
+
+[node name="ItemList" type="ItemList" parent="UI_FIGHT_MENU/UI_MGK"]
+custom_minimum_size = Vector2(190, 105)
+layout_mode = 2
+offset_right = 190.0
+offset_bottom = 105.0
+theme = ExtResource("1_oekr6")
+item_count = 16
+max_columns = 2
+fixed_column_width = 80
+item_0/text = "Magic 1"
+item_1/text = "2"
+item_2/text = "3"
+item_3/text = "4"
+item_4/text = "5"
+item_5/text = "6"
+item_6/text = "7"
+item_7/text = "8"
+item_9/text = "9"
+item_10/text = "10"
+item_11/text = "11"
+item_12/text = "12"
+item_13/text = "13"
+item_14/text = "14"
+item_15/text = "15"
+
+[node name="UI_TLK" type="Panel" parent="UI_FIGHT_MENU"]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(190, 120)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("1_oekr6")
+
+[node name="Label" type="Label" parent="UI_FIGHT_MENU/UI_TLK"]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 40.0
+offset_right = 121.0
+offset_bottom = 63.0
+theme = ExtResource("1_oekr6")
+text = "Talk Menu"
+
+[node name="TabBar" type="TabBar" parent="UI_FIGHT_MENU"]
+layout_mode = 2
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("1_oekr6")
+current_tab = 0
+tab_count = 4
+tab_0/title = "Atk"
+tab_1/title = "Itm"
+tab_2/title = "Mgk"
+tab_3/title = "Tlk"
+
+[connection signal="pressed" from="UI_FIGHT_MENU/UI_ATTK/Button" to="." method="Attack1"]
+[connection signal="pressed" from="UI_FIGHT_MENU/UI_ATTK/Button2" to="." method="Attack2"]
+[connection signal="pressed" from="UI_FIGHT_MENU/UI_ATTK/Button3" to="." method="Attack3"]
+[connection signal="pressed" from="UI_FIGHT_MENU/UI_ATTK/Button4" to="." method="Attack4"]
+[connection signal="tab_changed" from="UI_FIGHT_MENU/TabBar" to="." method="SelectTab"]

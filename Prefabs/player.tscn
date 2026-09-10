@@ -1,13 +1,113 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca6v8dm7ibf3x"]
+[gd_scene load_steps=23 format=3 uid="uid://ca6v8dm7ibf3x"]
 
 [ext_resource type="Script" uid="uid://mk84qjuk1btk" path="res://Scripts/Player.cs" id="1_y6xdh"]
-[ext_resource type="Texture2D" uid="uid://cb8hsnl3he2h" path="res://icon.svg" id="2_5wxv7"]
+[ext_resource type="Script" uid="uid://bdighvqu4d0hp" path="res://Scripts/camerafollow.gd" id="2_knrd4"]
+[ext_resource type="Script" uid="uid://btohjpjkqpvcx" path="res://Scripts/MouseHandling.cs" id="2_y5hcb"]
+[ext_resource type="PackedScene" uid="uid://dbtsov5uolfy5" path="res://Prefabs/UI/ui_base.tscn" id="3_y5hcb"]
+[ext_resource type="Script" uid="uid://cqokgrgp7m84g" path="res://Scripts/PlayerAnimationTree.cs" id="4_2nftw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y6xdh"]
 rough = true
 absorbent = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3icqa"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y5hcb"]
+radius = 0.1
+height = 0.75
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5wxv7"]
+viewport_path = NodePath("UI")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_y5hcb"]
+plane = Plane(0, 0, 1, 0)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5wxv7"]
+radius = 0.290076
+
+[sub_resource type="Animation" id="Animation_knrd4"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("L/CSGMesh3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.552, 0, -0.513)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("L/CSGMesh3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.733091, 0.129772, 0.172363, 0.645002)
+
+[sub_resource type="Animation" id="Animation_2nftw"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("L/CSGMesh3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.198525, 1.88856, -0.523253)
+
+[sub_resource type="Animation" id="Animation_y5hcb"]
+resource_name = "Slash"
+length = 0.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("L/CSGMesh3D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.199, 0.553, -0.523, 0.5, 1, -0.552, 0, -0.513)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("L/CSGMesh3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.392879, -0.244342, -0.0862285, 0.882331, 0.5, 1, -0.733091, 0.129772, 0.172363, 0.645002)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_knrd4"]
+_data = {
+&"Idle": SubResource("Animation_knrd4"),
+&"RESET": SubResource("Animation_2nftw"),
+&"Slash": SubResource("Animation_y5hcb")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y5hcb"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2nftw"]
+animation = &"Slash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_knrd4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hck1p"]
+advance_mode = 2
+advance_expression = "isSlashing == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y5hcb"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_juxdh"]
+states/Idle/node = SubResource("AnimationNodeAnimation_y5hcb")
+states/Idle/position = Vector2(353, 112)
+states/Slash/node = SubResource("AnimationNodeAnimation_2nftw")
+states/Slash/position = Vector2(524, 184)
+states/Start/position = Vector2(162, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_knrd4"), "Idle", "Slash", SubResource("AnimationNodeStateMachineTransition_hck1p"), "Slash", "Idle", SubResource("AnimationNodeStateMachineTransition_y5hcb")]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_y5hcb"]
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_juxdh")
+nodes/StateMachine/position = Vector2(3.80185, 64.3854)
+nodes/output/position = Vector2(440, 120)
+node_connections = [&"output", 0, &"StateMachine"]
 
 [node name="Player" type="RigidBody3D"]
 axis_lock_angular_x = true
@@ -17,13 +117,65 @@ mass = 100.0
 physics_material_override = SubResource("PhysicsMaterial_y6xdh")
 script = ExtResource("1_y6xdh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Physical Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_3icqa")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.300943, 0, 0, 0, 0.282363, 0.256957, 0, -0.104242, 0.696025, 0, 1.06447, -1.21154)
-texture = ExtResource("2_5wxv7")
+[node name="L" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("2_knrd4")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="L"]
+transform = Transform3D(0.906901, -0.412618, -0.0853092, 0.0320797, -0.134263, 0.990426, -0.420122, -0.900955, -0.108527, 0.198525, 1.88856, -0.523253)
+mesh = SubResource("CapsuleMesh_y5hcb")
+
+[node name="Sprite3D" type="Sprite3D" parent="L"]
+transform = Transform3D(0.495, 0, 0, 0, 0.464366, 0.171433, 0, -0.171433, 0.464366, 0, -0.43553, -1.21154)
+texture_filter = 0
+texture = SubResource("ViewportTexture_5wxv7")
+script = ExtResource("2_y5hcb")
+
+[node name="UIArea" type="Area3D" parent="L/Sprite3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="L/Sprite3D/UIArea"]
+transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_y5hcb")
+
+[node name="HitBox" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Hit Collision" type="CollisionShape3D" parent="HitBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("SphereShape3D_5wxv7")
+
+[node name="UI" type="SubViewport" parent="."]
+disable_3d = true
+canvas_item_default_texture_filter = 0
+physics_object_picking = true
+physics_object_picking_sort = true
+size = Vector2i(192, 140)
+
+[node name="UI_BASE" parent="UI" instance=ExtResource("3_y5hcb")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 192.0
+offset_bottom = 140.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_knrd4")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_y5hcb")
+anim_player = NodePath("../AnimationPlayer")
+script = ExtResource("4_2nftw")
+
+[connection signal="SendAttack" from="UI/UI_BASE" to="." method="SendAttack"]

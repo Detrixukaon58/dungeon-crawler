@@ -1,0 +1,17 @@
+[remap]
+
+importer="font_data_bmfont"
+type="FontFile"
+uid="uid://dat72e8cmc8eg"
+path="res://.godot/imported/Altered Chrome.fnt-5aea2b6860943628de0f8c9d78df3846.fontdata"
+
+[deps]
+
+source_file="res://Fonts/Altered Chrome/Atari8/Altered Chrome.fnt"
+dest_files=["res://.godot/imported/Altered Chrome.fnt-5aea2b6860943628de0f8c9d78df3846.fontdata"]
+
+[params]
+
+fallbacks=[]
+compress=true
+scaling_mode=2

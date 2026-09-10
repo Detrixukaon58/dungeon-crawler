@@ -18,6 +18,10 @@ config/icon="res://icon.svg"
 
 NodeTreeShellCore="*res://addons/godot-node-tree-shell/NodeTreeShellCore.tscn"
 
+[debug_draw_3d]
+
+settings/addon_root_folder="res://addons/debug_draw_3d"
+
 [dotnet]
 
 project/assembly_name="Dungeon Crawler"
@@ -25,6 +29,15 @@ project/assembly_name="Dungeon Crawler"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-node-tree-shell/plugin.cfg")
+
+[global_group]
+
+UI="UI"
+
+[gui]
+
+theme/custom_font="uid://dr6l620ny2els"
+theme/default_font_antialiasing=0
 
 [input]
 
